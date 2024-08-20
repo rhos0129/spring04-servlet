@@ -5,8 +5,11 @@ import com.example.springservlet.web.frontcontroller.MyView;
 import com.example.springservlet.web.frontcontroller.v3.controller.MemberFormControllerV3;
 import com.example.springservlet.web.frontcontroller.v3.controller.MemberListControllerV3;
 import com.example.springservlet.web.frontcontroller.v3.controller.MemberSaveControllerV3;
+import com.example.springservlet.web.frontcontroller.v4.controller.MemberFormControllerV4;
+import com.example.springservlet.web.frontcontroller.v4.controller.MemberListControllerV4;
+import com.example.springservlet.web.frontcontroller.v4.controller.MemberSaveControllerV4;
 import com.example.springservlet.web.frontcontroller.v5.adapter.ControllerV3HandlerAdapter;
-
+import com.example.springservlet.web.frontcontroller.v5.adapter.ControllerV4HandlerAdapter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -37,11 +40,17 @@ public class FrontControllerServletV5 extends HttpServlet {
         handlerMap.put("/front-controller/v5/v3/members/new-form", new MemberFormControllerV3());
         handlerMap.put("/front-controller/v5/v3/members/save", new MemberSaveControllerV3());
         handlerMap.put("/front-controller/v5/v3/members", new MemberListControllerV3());
+
+        // 추가
+        handlerMap.put("/front-controller/v5/v4/members/new-form", new MemberFormControllerV4());
+        handlerMap.put("/front-controller/v5/v4/members/save", new MemberSaveControllerV4());
+        handlerMap.put("/front-controller/v5/v4/members", new MemberListControllerV4());
     }
 
     // handlerAdapters에 handlerAdapter 저장
     private void initHandlerAdapters() {
         myHandlerAdapters.add(new ControllerV3HandlerAdapter());
+        myHandlerAdapters.add(new ControllerV4HandlerAdapter());
     }
 
     @Override
