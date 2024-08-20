@@ -21,4 +21,15 @@ public class MyView {
         dispatcher.forward(request, response);
     }
 
+    // 뷰 렌더링 - request에 model을 담고 가지고 있는 viewPath로 포워딩 이동
+    public void render(Map<String, Object> model, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        modelToRequestAttribute(model, request);
+        RequestDispatcher dispatcher = request.getRequestDispatcher(viewPath);
+        dispatcher.forward(request, response);
+    }
+
+    private void modelToRequestAttribute(Map<String, Object> model, HttpServletRequest request) {
+        model.forEach((key, value) -> request.setAttribute(key, value));
+    }
+
 }
